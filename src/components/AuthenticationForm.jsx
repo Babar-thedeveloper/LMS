@@ -43,8 +43,9 @@ const AuthForm = () => {
         <div className="flex flex-col justify-center p-8">
           <div className="flex flex-col items-center mb-6">
             {/* LMS Logo */}
-            <img src={lmsLogo} alt="LMS Logo" className="w-40 h-40 object-contain mb-2 rounded-full shadow" />
-            <div className="text-xl font-semibold text-primary mb-4 tracking-wide text-center">Leave Management System</div>
+            <img src={lmsLogo} alt="LMS Logo" className="w-32 h-32 md:w-40 md:h-40 object-contain mb-2 rounded-full shadow-lg transition-transform duration-300 hover:scale-105" />
+            <h1 className="text-2xl md:text-3xl font-bold text-primary mb-2 tracking-wide text-center drop-shadow-lg animate-fade-in">Leave Management System</h1>
+            <div className="text-lg md:text-xl font-semibold text-primary mb-4 tracking-wide text-center">Welcome Back!</div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -73,7 +74,7 @@ const AuthForm = () => {
             />
             <button
               type="submit"
-              className="btn btn-primary w-full text-lg font-bold rounded-xl mt-2 transition-all duration-200 shadow-md hover:scale-105"
+              className="btn btn-primary w-full text-lg font-bold rounded-xl mt-2 transition-all duration-200 shadow-md hover:scale-105 focus:ring-4 focus:ring-primary/50 focus:outline-none animate-bounce-once"
             >
               Sign In
             </button>

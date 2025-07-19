@@ -1,20 +1,30 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { HiMenu } from 'react-icons/hi';
 import { FaUserCircle, FaUserEdit, FaSignOutAlt } from 'react-icons/fa';
-import { MdColorLens } from 'react-icons/md';
+import { BsPalette } from 'react-icons/bs';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
-const themes = [
-  "light", "dark", "cupcake", "bumblebee", "emerald", "corporate",
-  "synthwave", "retro", "cyberpunk", "valentine", "halloween",
-  "garden", "forest", "aqua", "lofi", "pastel", "fantasy",
-  "wireframe", "black", "luxury", "dracula", "cmyk", "autumn",
-  "business", "acid", "lemonade", "night", "coffee", "winter",
-  "dim", "nord", "sunset"
-];
+const themes = ["nord", "cmyk", "fantasy", "corporate"];
+
+
+const pageTitles = {
+  '/layout/apply-leaves': 'Apply Leaves',
+  '/layout/all-leaves': 'All Leaves',
+  '/layout/official-duty': 'Official Duty',
+  '/layout/personal-work': 'Personal Work',
+  '/layout/asset-management': 'Asset Management',
+  '/layout/view-attendance': 'View Attendance',
+  '/layout/company-assets': 'Company Assets',
+  '/layout/leave-policies': 'Leave Policies',
+  '/layout/resignation': 'Resignation',
+  '/layout/admindashboard': 'Admin Dashboard',
+  // Add more as needed
+};
 
 const Navbar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [profileOpen, setProfileOpen] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
@@ -29,6 +39,9 @@ const Navbar = ({ toggleSidebar }) => {
     navigate('/');
   };
 
+  // Get dynamic page title
+  const pageTitle = pageTitles[Object.keys(pageTitles).find((key) => location.pathname.startsWith(key))] || 'LMS Dashboard';
+
   return (
     <header className="bg-base-100 p-4 border-b shadow flex justify-between items-center relative z-30">
       {/* Sidebar Toggle Button (Mobile) */}
@@ -37,19 +50,25 @@ const Navbar = ({ toggleSidebar }) => {
       </button>
 
       {/* Logo or Title (center on mobile if needed) */}
-      <h1 className="text-xl font-semibold hidden sm:block">LMS Dashboard</h1>
+      <h1 className="text-xl md:text-2xl font-bold text-primary drop-shadow hidden sm:block animate-fade-in">{pageTitle}</h1>
 
       <div className="flex items-center gap-4">
         {/* Theme Switcher Dropdown */}
         <div className="dropdown dropdown-end relative">
           <button
-            className="btn btn-primary rounded-xl shadow-md flex items-center gap-2 px-4 py-2 font-semibold text-base-100 transition-all duration-200"
-            style={{ background: 'linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%)' }}
+            className="btn btn-primary rounded-xl shadow-md flex items-center gap-2 px-4 py-2 font-semibold transition-all duration-200 animate-pulse hover:scale-105 focus:ring-4 focus:ring-primary/50"
+            style={{ background: 'linear-gradient(90deg, var(--p) 0%, var(--s) 100%)' }}
             onClick={() => setThemeOpen((open) => !open)}
             aria-label="Theme menu"
           >
-            <MdColorLens size={22} className="text-white" />
-            <span className="hidden sm:inline">Themes</span>
+            {theme === 'dark' ? (
+              <FaMoon size={22} className="text-secondary animate-spin-slow" />
+            ) : theme === 'light' ? (
+              <FaSun size={22} className="text-warning animate-spin-slow" />
+            ) : (
+              <BsPalette size={22} className="text-primary animate-spin-slow" />
+            )}
+            <span className="hidden sm:inline"></span>
           </button>
           {themeOpen && (
             <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 max-h-64 overflow-auto grid grid-cols-2 gap-2 absolute right-0 top-12 animate-fade-in z-50">

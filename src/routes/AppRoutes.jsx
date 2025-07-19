@@ -7,7 +7,6 @@ import SlotManagement from "../pages/SlotManagement";
 import ChallanManagement from "../pages/ChallanManagement";
 import BookingManagement from "../pages/BookingManagement";
 import AdminDashboard from "../pages/AdminDashboard";
-import EditGame from "../components/Games/EditGame";
 import ApplyLeaves from "../pages/ApplyLeaves";
 import AllLeaves from "../pages/AllLeaves";
 import OfficialDuty from "../pages/OfficialDuty";
@@ -17,6 +16,9 @@ import ViewAttendance from "../pages/ViewAttendance";
 import CompanyAssets from "../pages/CompanyAssets";
 import LeavePolicies from "../pages/LeavePolicies";
 import Resignation from "../pages/Resignation";
+import OnBehalfOf from "../pages/OnBehalfOf";
+import ManagerDashboard from "../pages/ManagerDashboard";
+import HRSection from "../pages/HRSection";
 
 const AppRoutes = () => {
   return (
@@ -28,7 +30,6 @@ const AppRoutes = () => {
       <Route path="/layout" element={<Layout />}>
         <Route path="admindashboard" element={<AdminDashboard/>} />
         <Route path="games" element={<GameManagement />} />
-        <Route path="games/:id" element={<EditGame />} />
         <Route path="grounds" element={<GroundManagement />} />
         <Route path="slots" element={<SlotManagement />} />
         <Route path="challans" element={<ChallanManagement />} />
@@ -43,6 +44,9 @@ const AppRoutes = () => {
         <Route path="company-assets" element={<CompanyAssets />} />
         <Route path="leave-policies" element={<LeavePolicies />} />
         <Route path="resignation" element={<Resignation />} />
+        <Route path="on-behalf-of" element={<OnBehalfOf />} />
+        <Route path="manager-dashboard" element={<ManagerDashboard />} />
+        <Route path="hr-section" element={<HRSection />} />
       </Route>
     </Routes>
   );
