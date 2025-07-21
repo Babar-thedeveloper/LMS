@@ -25,7 +25,7 @@ const pageTitles = {
 const Navbar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'corporate');
   const [profileOpen, setProfileOpen] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
 
